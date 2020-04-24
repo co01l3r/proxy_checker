@@ -1,0 +1,15 @@
+{
+    "name": "cooler/proxy-checker",
+    "type": "library",
+    "authors": [
+        {
+            "name": "theRealCooller",
+            "email": "jakublohnicky@hotmail.com"
+        }
+    ],
+    "require": {
+        "klapuch/lock": "^0.0.1",
+        "php": ">=7.4",
+        "ext-curl": "*"
+    }
+}
