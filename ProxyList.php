@@ -30,13 +30,8 @@ class ProxyList
 
     private function lastLine(): string
     {
-        $emptyLine = "";
         $lines = file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        if (count($lines) > 0) {
-            return $lines[count($lines) - 1];
-        } else {
-            return $emptyLine;
-        }
+        return $lines[count($lines) - 1] ?? '';
     }
 
     private function deleteLastLine($lastLine): void {
