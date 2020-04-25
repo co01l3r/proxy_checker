@@ -30,10 +30,8 @@ class UrlResponse
         try {
             curl_exec($curl);
             if (curl_errno($curl) === 0) {
-                var_dump(curl_error($curl));
                 return true;
             } else {
-                var_dump(curl_error($curl));
                 return false;
             }
         } finally {

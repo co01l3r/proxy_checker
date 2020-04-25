@@ -32,7 +32,6 @@ class ProxyList
     {
         $emptyLine = "";
         $lines = file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        var_dump($lines);
         if (count($lines) > 0) {
             return $lines[count($lines) - 1];
         } else {
