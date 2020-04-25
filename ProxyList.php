@@ -28,26 +28,21 @@ class ProxyList
         });
     }
 
-    private function lastLine(): string {
-/*        $fp = fopen($this->file, "r");
-        fseek($fp, -2, SEEK_END);
-        $pos = ftell($fp);
-        $lastLine = "";
-
-        while((($c = var_dump(fgetc($fp))) != "\n") && ($pos > 0)) {
-            $lastLine = $c.$lastLine;
-            fseek($fp, $pos--);
+    private function lastLine(): string
+    {
+        $emptyLine = "";
+        $lines = file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        var_dump($lines);
+        if (count($lines) > 0) {
+            return $lines[count($lines) - 1];
+        } else {
+            return $emptyLine;
         }
-        return $lastLine;*/
-
-        $file = $this->file;
-        $data = file($file);
-        $line = $data[count($data)-1];
     }
 
     private function deleteLastLine($lastLine): void {
         $file = fopen($this->file, 'a+');
-        ftruncate($file, filesize($this->file) - strlen($lastLine));
+        ftruncate($file, max(0, filesize($this->file) - strlen($lastLine) - strlen("\n")));
         fclose($file);
     }
 
