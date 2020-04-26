@@ -14,4 +14,10 @@ class TextFileOutput implements Output
         fwrite($file, $proxy .PHP_EOL);
         fclose($file);
     }
+
+    public function echoWrite(string $proxy): string {
+        while ($proxy !== 'Not Ok') {
+            echo $proxy .PHP_EOL;
+        }
+    }
 }
