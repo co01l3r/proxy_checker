@@ -6,7 +6,7 @@ require ('RandomUserAgent.php');
 require ('UrlResponse.php');
 
 
-$proxyList = new ProxyList('/var/www/ProxyChecker/proxys', new \Klapuch\Lock\SemaphoreFactory());
+$proxyList = new ProxyList('', new \Klapuch\Lock\SemaphoreFactory());
 $randomUserAgent = new RandomUserAgent();
 $urlResponse = new UrlResponse('https://www.csfd.cz/', $randomUserAgent, 3);
 

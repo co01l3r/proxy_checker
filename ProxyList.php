@@ -41,8 +41,7 @@ class ProxyList
     }
 
     private function tempName(): string {
-       return sprintf('%s/%s', sys_get_temp_dir(), md5(realpath($this->file)));
+       return sprintf('%s/%s_%d', sys_get_temp_dir(), md5(realpath($this->file)), filemtime($this->file));
     }
-
 }
 
