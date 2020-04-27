@@ -1,7 +1,7 @@
 <?php
 
 
-class UrlResponse
+class UrlResponse implements Response
 {
     private string $url;
     private RandomUserAgent $randomUserAgent;
