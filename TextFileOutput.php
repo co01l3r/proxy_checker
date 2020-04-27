@@ -1,5 +1,5 @@
 <?php
-require ('Output.php');
+namespace theRealCooller\ProxyChecker;
 
 class TextFileOutput implements Output
 {

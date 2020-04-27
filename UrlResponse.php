@@ -1,5 +1,6 @@
 <?php
 
+namespace theRealCooller\ProxyChecker;
 
 class UrlResponse implements Response
 {
