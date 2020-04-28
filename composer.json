@@ -11,5 +11,12 @@
         "klapuch/lock": "^0.0.1",
         "php": ">=7.4",
         "ext-curl": "*"
+    },
+  "autoload": {
+    "psr-4": {
+      "theRealCooller\\ProxyChecker\\": [
+        "src/"
+      ]
     }
+  }
 }
