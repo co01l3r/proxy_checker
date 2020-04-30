@@ -2,6 +2,8 @@
 
 namespace theRealCooller\ProxyChecker;
 
+use http\Exception\RuntimeException;
+
 class ProxyList
 {
     private string $file;
@@ -35,8 +37,12 @@ class ProxyList
         return $lines[count($lines) - 1] ?? '';
     }
 
-    private function deleteLastLine($lastLine): void {
+    private function deleteLastLine($lastLine): void
+    {
         $file = fopen($this->file, 'a+');
+        if ($file === false) {
+            throw new RuntimeException('not a valid file');
+        }
         ftruncate($file, max(0, filesize($this->file) - strlen($lastLine) - strlen("\n")));
         fclose($file);
     }
