@@ -54,7 +54,6 @@ class ProxyList
 
     private function isPosixFile(string $file): bool
     {
-        var_dump($this->lastLineChar($this->file));
         return $this->lastLineChar($file) === "\n";
     }
 
