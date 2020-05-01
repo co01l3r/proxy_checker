@@ -14,6 +14,6 @@ class RandomUserAgent implements UserAgent
     ];
 
     public function choose(): string {
-        return array_rand(self::USER_AGENTS, 1);
+        return self::USER_AGENTS[array_rand(self::USER_AGENTS, 1)];
     }
 }
