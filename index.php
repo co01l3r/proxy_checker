@@ -10,5 +10,5 @@ $massOutput = new ProxyChecker\MassOutput($textFilePositiveOutput, new ProxyChec
 $nullOutput = new ProxyChecker\DevNullOutput();
 $textFileNegativeOutput = new ProxyChecker\TextFileOutput('negative-results.txt');
 
-$proxy = new ProxyChecker\ProxyCheck('/var/www/ProxyChecker/proxyx', $massOutput, $nullOutput, $urlResponse);
+$proxy = new ProxyChecker\ProxyCheck('/var/www/ProxyChecker/proxy', $massOutput, $nullOutput, $urlResponse);
 $proxy->check();

@@ -15,7 +15,7 @@ class ProxyList
 
     public function use(): string
     {
-            $tempFile = $this->tempName();
+            $tempFile = $this->tempName($this->file);
             return $this->semaphoreFactory->create($tempFile)->synchronized(function () use ($tempFile) {
                 if (!file_exists($tempFile)) {
                     if ($this->isPosixFile($this->file)) {
@@ -24,32 +24,31 @@ class ProxyList
                         throw new \RuntimeException(sprintf('%s is not a valid file', $this->file));
                     }
                 }
-                $this->file = $tempFile;
-                $lastLine = $this->lastLine();
-                $this->deleteLastLine($lastLine);
+                $lastLine = $this->lastLine($tempFile);
+                $this->deleteLastLine($lastLine, $tempFile);
 
                 return $lastLine;
             });
     }
 
-    private function lastLine(): string
+    private function lastLine(string $file): string
     {
-        $lines = file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         return $lines[count($lines) - 1] ?? '';
     }
 
-    private function deleteLastLine($lastLine): void
+    private function deleteLastLine($lastLine, string $resource): void
     {
-        $file = fopen($this->file, 'a+');
+        $file = fopen($resource, 'a+');
         if ($file === false) {
-            throw new \RuntimeException(sprintf('%s is not a valid file', $this->file));
+            throw new \RuntimeException(sprintf('%s is not a valid file', $resource));
         }
-        ftruncate($file, max(0, filesize($this->file) - strlen($lastLine) - strlen("\n")));
+        ftruncate($file, max(0, filesize($resource) - strlen($lastLine) - strlen("\n")));
         fclose($file);
     }
 
-    private function tempName(): string {
-       return sprintf('%s/%s_%d', sys_get_temp_dir(), md5(realpath($this->file)), filemtime($this->file));
+    private function tempName(string $file): string {
+       return sprintf('%s/%s_%d', sys_get_temp_dir(), md5(realpath($file)), filemtime($file));
     }
 
     private function isPosixFile(string $file): bool
