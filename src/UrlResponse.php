@@ -30,7 +30,7 @@ class UrlResponse implements Response
 
         try {
             curl_exec($curl);
-            return curl_errno($curl) !== 1;
+            return curl_errno($curl) === 0;
         } finally {
             curl_close($curl);
         }
