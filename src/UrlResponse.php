@@ -20,7 +20,6 @@ class UrlResponse implements Response
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_TIMEOUT => 2,
             CURLOPT_CONNECTTIMEOUT => 4,
             CURLOPT_URL => $this->url,
@@ -31,11 +30,7 @@ class UrlResponse implements Response
 
         try {
             curl_exec($curl);
-            if (curl_errno($curl) === 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return curl_errno($curl) !== 1;
         } finally {
             curl_close($curl);
         }
