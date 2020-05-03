@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace theRealCooller\ProxyChecker;
 
 class TextFileOutput implements Output
