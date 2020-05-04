@@ -9,13 +9,15 @@ class ProxyCheck
     private Output $successOutput;
     private Output $failedOutput;
     private UrlResponse $urlResponse;
+    private Progress $finalProgress;
 
-    public function __construct(string $resourceFile, Output $successOutput, Output $failedOutput, UrlResponse $urlResponse)
+    public function __construct(string $resourceFile, Output $successOutput, Output $failedOutput, UrlResponse $urlResponse, Progress $finalProgress)
     {
         $this->resourceFile = $resourceFile;
         $this->successOutput = $successOutput;
         $this->failedOutput = $failedOutput;
         $this->urlResponse = $urlResponse;
+        $this->finalProgress = $finalProgress;
     }
 
     public function check(): void {
@@ -28,5 +30,6 @@ class ProxyCheck
                 $this->failedOutput->write($proxy);
             }
         }
+        $this->finalProgress->write();
     }
 }

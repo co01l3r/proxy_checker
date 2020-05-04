@@ -26,7 +26,9 @@ class ProxyList
                     }
                 }
                 $lastLine = $this->lastLine($tempFile);
+                var_dump($lastLine);
                 $this->deleteLastLine($lastLine, $tempFile);
+                var_dump($lastLine);
 
                 return $lastLine;
             });
@@ -35,17 +37,19 @@ class ProxyList
     private function lastLine(string $file): string
     {
         $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        return $lines[count($lines) - 1] ?? '';
+        return $lines[count($lines) -1] ?? '';
     }
 
     private function deleteLastLine($lastLine, string $resource): void
     {
-        $file = fopen($resource, 'a+');
-        if ($file === false) {
-            throw new \RuntimeException(sprintf('%s is not a valid file', $resource));
+        if ($lastLine === '') {
+            $file = fopen($resource, 'a+');
+            if ($file === false) {
+                throw new \RuntimeException(sprintf('%s is not a valid file', $resource));
+            }
+            ftruncate($file, max(0, filesize($resource) - strlen($lastLine) - strlen("\n")));
+            fclose($file);
         }
-        ftruncate($file, max(0, filesize($resource) - strlen($lastLine) - strlen("\n")));
-        fclose($file);
     }
 
     private function tempName(string $file): string {

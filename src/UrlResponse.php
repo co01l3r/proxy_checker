@@ -20,6 +20,7 @@ class UrlResponse implements Response
         $curl = curl_init();
 
         curl_setopt_array($curl, [
+            CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_TIMEOUT => 2,
             CURLOPT_CONNECTTIMEOUT => 4,
             CURLOPT_URL => $this->url,
