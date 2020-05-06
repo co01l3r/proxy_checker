@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace theRealCooller\ProxyChecker;
 
@@ -16,7 +16,8 @@ class UrlResponse implements Response
         $this->randomUserAgent = $randomUserAgent;
     }
 
-    private function firstConnectionAttempt(string $proxy): bool {
+    private function firstConnectionAttempt(string $proxy): bool
+    {
         $curl = curl_init();
 
         curl_setopt_array($curl, [

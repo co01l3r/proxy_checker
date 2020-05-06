@@ -1,8 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace theRealCooller\ProxyChecker;
 
-interface Output {
+interface Output
+{
     public function write(string $proxy): void;
 }

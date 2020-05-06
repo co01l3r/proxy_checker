@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace theRealCooller\ProxyChecker;
 
@@ -14,7 +14,8 @@ class RandomUserAgent implements UserAgent
         'Mozilla/5.0 (X11; Linux x86_64; rv:74.0) Gecko/20100101 Firefox/74.0',
     ];
 
-    public function choose(): string {
+    public function choose(): string
+    {
         return self::USER_AGENTS[array_rand(self::USER_AGENTS, 1)];
     }
 }

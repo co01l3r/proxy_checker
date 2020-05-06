@@ -1,8 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
 use theRealCooller\ProxyChecker;
+
 require __DIR__ . '/vendor/autoload.php';
 
 $urlResponse = new ProxyChecker\UrlResponse('https://www.csfd.cz/', new ProxyChecker\RandomUserAgent(), 3);

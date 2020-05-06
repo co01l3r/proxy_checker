@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace theRealCooller\ProxyChecker;
 
@@ -20,7 +20,8 @@ class ProxyCheck
         $this->finalProgress = $finalProgress;
     }
 
-    public function check(): void {
+    public function check(): void
+    {
         $proxyList = new ProxyList($this->resourceFile, new \Klapuch\Lock\SemaphoreFactory());
 
         while (($proxy = $proxyList->use()) !== '') {
