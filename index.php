@@ -5,7 +5,7 @@ use theRealCooller\ProxyChecker;
 require __DIR__ . '/vendor/autoload.php';
 
 //change these as you see fit:
-$resource = '/var/www/ProxyChecker/proxyz';
+$resource = '/var/www/ProxyChecker/proxyC';
 $urlToTest = 'https://www.csfd.cz/';
 $positiveResultFileName = 'positive-result.txt';
 $negativeResultFileName = 'negative-results.txt';
@@ -18,5 +18,5 @@ $nullOutput = new ProxyChecker\DevNullOutput();
 $textFileNegativeOutput = new ProxyChecker\TextFileOutput($negativeResultFileName);
 $Results = new ProxyChecker\FinalProgress($positiveResultFileName, $negativeResultFileName, $resource);
 
-$proxy = new ProxyChecker\ProxyCheck($resource, $massOutput, $nullOutput, $urlResponse, $Results);
+$proxy = new ProxyChecker\ProxyCheck($resource, $massOutput, $textFileNegativeOutput, $urlResponse, $Results);
 $proxy->check();
