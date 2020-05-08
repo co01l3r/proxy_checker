@@ -7,7 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 //change these as you see fit:
 $resource = '/var/www/ProxyChecker/proxyC';
 $urlToTest = 'https://www.csfd.cz/';
-$positiveResultFileName = 'positive-result.txt';
+$positiveResultFileName = 'positive-results.txt';
 $negativeResultFileName = 'negative-results.txt';
 
 
